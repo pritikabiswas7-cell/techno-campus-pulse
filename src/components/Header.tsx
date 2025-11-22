@@ -1,31 +1,57 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, Menu, Bell, User } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  // Helper for smooth scroll after navigation
+  const scrollToVolunteer = () => {
+    setTimeout(() => {
+      const el = document.getElementById("volunteer");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <Calendar className="h-8 w-8 text-primary" />
-          <h1 className="text-2xl font-black tracking-tight bg-gradient-primary bg-clip-text text-transparent">
+          <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-primary bg-clip-text text-transparent">
             Techno Eventz
           </h1>
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">
-          <Link to="/#events" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+          <a
+            href="#events"
+            className="text-lg font-extrabold text-foreground hover:text-primary transition-colors"
+            onClick={e => {
+              e.preventDefault();
+              if (location.pathname !== "/") {
+                navigate("/", { state: { events: true } });
+              } else {
+                const el = document.getElementById("events");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
             Events
-          </Link>
-          <Link to="/memories" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-            Memories
-          </Link>
-          <Link to="/dashboard" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+          </a>
+          <Link
+            to="/dashboard"
+            className="text-lg font-extrabold text-foreground hover:text-primary transition-colors"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
             Dashboard
           </Link>
-          <a href="#volunteer" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-            Volunteer
-          </a>
+          <Link
+            to="/memories"
+            className="text-lg font-extrabold text-foreground hover:text-primary transition-colors"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            Memories
+          </Link>
         </nav>
 
         <div className="flex items-center gap-3">

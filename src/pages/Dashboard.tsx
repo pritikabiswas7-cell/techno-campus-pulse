@@ -6,6 +6,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Award, Calendar, Trophy, Clock, Download, Medal } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Dashboard = () => {
   const studentInfo = {
@@ -20,15 +22,15 @@ const Dashboard = () => {
 
   const upcomingEvents = [
     {
-      title: "Techno Hackathon 2024",
-      date: "March 15, 2024",
+      title: "Techno Hackathon 2026",
+      date: "January 15, 2026",
       time: "9:00 AM",
       marPoints: 50,
       status: "registered"
     },
     {
       title: "Techno Open Mic",
-      date: "March 18, 2024",
+      date: "February 18, 2026",
       time: "6:00 PM",
       marPoints: 20,
       status: "registered"
@@ -74,6 +76,18 @@ const Dashboard = () => {
     { event: "Guest Lecture Coordination", hours: 3, date: "Jan 25, 2024" }
   ];
 
+  const location = useLocation();
+  const [tab, setTab] = useState("events");
+  useEffect(() => {
+    // Check for hash or state to select volunteer tab
+    if (location.hash === "#volunteer" || location.state?.volunteer) {
+      setTab("volunteer");
+      setTimeout(() => {
+        const el = document.getElementById("volunteer");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, [location]);
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -142,7 +156,7 @@ const Dashboard = () => {
           </div>
 
           {/* Main Content Tabs */}
-          <Tabs defaultValue="events" className="animate-fade-in">
+          <Tabs value={tab} onValueChange={setTab} className="animate-fade-in">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="events">Events</TabsTrigger>
               <TabsTrigger value="badges">Badges</TabsTrigger>
@@ -240,7 +254,7 @@ const Dashboard = () => {
             </TabsContent>
 
             {/* Volunteer Tab */}
-            <TabsContent value="volunteer">
+            <TabsContent value="volunteer" id="volunteer">
               <Card>
                 <CardHeader>
                   <CardTitle>Volunteer History</CardTitle>
@@ -253,6 +267,10 @@ const Dashboard = () => {
                     </div>
                     <Progress value={75} className="h-2" />
                   </div>
+                  <h3 className="text-lg font-bold mb-2">Events Volunteered</h3>
+                  {volunteerHours.length === 0 && (
+                    <div className="text-muted-foreground mb-4">You have not volunteered for any events yet.</div>
+                  )}
                   {volunteerHours.map((volunteer, index) => (
                     <div key={index} className="flex items-center justify-between p-4 border border-border rounded-lg">
                       <div className="flex-1">
@@ -263,6 +281,19 @@ const Dashboard = () => {
                         <Clock className="h-4 w-4" />
                         {volunteer.hours} hours
                       </div>
+                    </div>
+                  ))}
+                  <h3 className="text-lg font-bold mt-8 mb-2">Upcoming Events to Volunteer</h3>
+                  {upcomingEvents.length === 0 && (
+                    <div className="text-muted-foreground">No upcoming events available for volunteering.</div>
+                  )}
+                  {upcomingEvents.map((event, index) => (
+                    <div key={index} className="flex items-center justify-between p-4 border border-dashed border-accent rounded-lg bg-accent/5">
+                      <div className="flex-1">
+                        <h3 className="font-bold text-foreground">{event.title}</h3>
+                        <p className="text-sm text-muted-foreground">{event.date} • {event.time}</p>
+                      </div>
+                      <Button size="sm" variant="outline">Volunteer</Button>
                     </div>
                   ))}
                 </CardContent>

@@ -10,7 +10,7 @@ const EventsSection = () => {
     {
       title: "Techno Hackathon 2024",
       description: "24-hour coding challenge to build innovative solutions for real-world problems. Win exciting prizes and gain industry exposure.",
-      date: "March 15, 2024",
+      date: "January 15, 2026",
       time: "9:00 AM",
       venue: "Main Auditorium, Techno Main",
       category: "Technical",
@@ -22,7 +22,7 @@ const EventsSection = () => {
     {
       title: "Techno Cultural Fest",
       description: "Annual cultural extravaganza featuring music, dance, drama, and art competitions. Celebrate diversity and creativity.",
-      date: "March 20, 2024",
+      date: "February 20, 2026",
       time: "5:00 PM",
       venue: "Open Air Theatre",
       category: "Cultural",
@@ -34,7 +34,7 @@ const EventsSection = () => {
     {
       title: "Techno Open Mic",
       description: "Share your talent in poetry, comedy, music, or storytelling. A platform for creative expression and entertainment.",
-      date: "March 18, 2024",
+      date: "March 18, 2026",
       time: "6:00 PM",
       venue: "Cafeteria Lawn",
       category: "Cultural",
@@ -48,7 +48,7 @@ const EventsSection = () => {
     {
       title: "Techno Workshop: AI & ML",
       description: "Hands-on workshop on Artificial Intelligence and Machine Learning fundamentals. Learn from industry experts.",
-      date: "March 22, 2024",
+      date: "April 22, 2026",
       time: "10:00 AM",
       venue: "Computer Lab 3, Block B",
       category: "Workshop",
@@ -62,7 +62,7 @@ const EventsSection = () => {
     {
       title: "Techno Sports Championship",
       description: "Inter-department sports competition featuring cricket, football, basketball, and athletics events.",
-      date: "March 25, 2024",
+      date: "May 25, 2026",
       time: "7:00 AM",
       venue: "Sports Complex",
       category: "Sports",
@@ -74,7 +74,7 @@ const EventsSection = () => {
     {
       title: "Techno Career Seminar",
       description: "Industry leaders discuss career opportunities, interview tips, and emerging technologies in the tech industry.",
-      date: "March 28, 2024",
+      date: "June 28, 2026",
       time: "2:00 PM",
       venue: "Seminar Hall 1",
       category: "Seminar",
