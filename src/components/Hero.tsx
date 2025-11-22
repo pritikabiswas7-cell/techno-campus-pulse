@@ -27,7 +27,7 @@ const Hero = () => {
             <Button size="lg" variant="secondary" className="font-semibold">
               Explore Events
             </Button>
-            <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
+            <Button size="lg" variant="secondary" className="font-semibold">
               Register Now
             </Button>
           </div>
